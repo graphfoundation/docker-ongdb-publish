@@ -2,10 +2,10 @@ FROM openjdk:8-jre-alpine
 
 RUN addgroup -S neo4j && adduser -S -H -h /var/lib/neo4j -G neo4j neo4j
 
-ENV NEO4J_SHA256=fb82e3d76ce5a088f4d34a3a9ec111d36262d13b7538ced224045b4eb4b8a90c \
-    NEO4J_TARBALL=ongdb-enterprise-3.4.6-unix.tar.gz \
+ENV NEO4J_SHA256=830cfb3f3ea0445c579835202214bdf689a23e79b7b962c3bbff2f6ff233337e \
+    NEO4J_TARBALL=ongdb-enterprise-3.4.9-unix.tar.gz \
     NEO4J_EDITION=enterprise
-ARG NEO4J_URI=http://cdn.graphfoundation.org/ongdb/dist/ongdb-enterprise-3.4.6-unix.tar.gz
+ARG NEO4J_URI=http://cdn.graphfoundation.org/ongdb/dist/ongdb-enterprise-3.4.9-unix.tar.gz
 
 COPY ./local-package/* /tmp/
 
