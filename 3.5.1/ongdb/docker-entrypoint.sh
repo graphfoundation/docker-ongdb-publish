@@ -111,6 +111,8 @@ unset NEO4J_dbms_txLog_rotation_retentionPolicy NEO4J_UDC_SOURCE \
 : ${NEO4J_causal__clustering_transaction__advertised__address:=$(hostname):6000}
 : ${NEO4J_causal__clustering_raft__listen__address:=0.0.0.0:7000}
 : ${NEO4J_causal__clustering_raft__advertised__address:=$(hostname):7000}
+: ${NEO4J_dbms_udc_enabled:="false"}
+: ${NEO4J_browser_allow__outgoing__connections:="false"}
 
 if [ -d /conf ]; then
     find /conf -type f -exec cp {} conf \;
