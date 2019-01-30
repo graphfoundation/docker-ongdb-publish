@@ -49,32 +49,6 @@ if [[ "${cmd}" != *"neo4j"* ]]; then
       exit 1
     fi
   fi
-else
-  # Only prompt for license agreement if command contains "neo4j" in it
-  if [ "$NEO4J_EDITION" == "enterprise" ]; then
-    if [ "${NEO4J_ACCEPT_LICENSE_AGREEMENT:=no}" != "yes" ]; then
-      echo >&2 "
-In order to use Neo4j Enterprise Edition you must accept the license agreement.
-
-(c) Network Engine for Objects in Lund AB.  2017.  All Rights Reserved.
-Use of this Software without a proper commercial license with Neo4j,
-Inc. or its affiliates is prohibited.
-
-Email inquiries can be directed to: licensing@neo4j.com
-
-More information is also available at: https://neo4j.com/licensing/
-
-
-To accept the license agreement set the environment variable
-NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
-
-To do this you can use the following docker argument:
-
-        --env=NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
-"
-      exit 1
-    fi
-  fi
 fi
 
 # Env variable naming convention:
