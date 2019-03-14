@@ -4,7 +4,8 @@ RUN addgroup -S neo4j && adduser -S -H -h /var/lib/neo4j -G neo4j neo4j
 
 ENV NEO4J_SHA256=ca6a2166db273b88a412052e9c1e704675198d57d49ab87f91ed44b9b9cf867b \
     NEO4J_TARBALL=ongdb-enterprise-3.5.3-unix.tar.gz \
-    NEO4J_EDITION=enterprise
+    NEO4J_EDITION=enterprise \
+    NEO4J_HOME=/var/lib/neo4j
 ARG NEO4J_URI=http://cdn.graphfoundation.org/ongdb/dist/ongdb-enterprise-3.5.3-unix.tar.gz
 
 COPY ./local-package/* /tmp/
@@ -17,21 +18,25 @@ RUN apk add --no-cache --quiet \
     && curl --fail --silent --show-error --location --remote-name ${NEO4J_URI} \
     && echo "${NEO4J_SHA256}  ${NEO4J_TARBALL}" | sha256sum -csw - \
     && tar --extract --file ${NEO4J_TARBALL} --directory /var/lib \
-    && mv /var/lib/ongdb-* /var/lib/neo4j \
+    && mv /var/lib/ongdb-* "${NEO4J_HOME}" \
     && rm ${NEO4J_TARBALL} \
-    && mv /var/lib/neo4j/data /data \
+    && mv "${NEO4J_HOME}"/data /data \
     && chown -R neo4j:neo4j /data \
     && chmod -R 777 /data \
-    && chown -R neo4j:neo4j /var/lib/neo4j \
-    && chmod -R 777 /var/lib/neo4j \
-    && ln -s /data /var/lib/neo4j/data \
+    && mv "${NEO4J_HOME}"/logs /logs \
+    && chown -R neo4j:neo4j /logs \
+    && chmod -R 777 /logs \
+    && chown -R neo4j:neo4j "${NEO4J_HOME}" \
+    && chmod -R 777 "${NEO4J_HOME}" \
+    && ln -s /data "${NEO4J_HOME}"/data \
+    && ln -s /logs "${NEO4J_HOME}"/logs \
     && apk del curl
 
-ENV PATH /var/lib/neo4j/bin:$PATH
+ENV PATH "${NEO4J_HOME}"/bin:$PATH
 
-WORKDIR /var/lib/neo4j
+WORKDIR "${NEO4J_HOME}"
 
-VOLUME /data
+VOLUME /data /logs
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
