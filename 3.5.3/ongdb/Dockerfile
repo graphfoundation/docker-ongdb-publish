@@ -2,7 +2,7 @@ FROM openjdk:8-jre-alpine
 
 RUN addgroup -S neo4j && adduser -S -H -h /var/lib/neo4j -G neo4j neo4j
 
-ENV NEO4J_SHA256=e2a75a79820cc4f22133a105f59a901d61182e53417f4269ed06c800c42f800c \
+ENV NEO4J_SHA256=ca6a2166db273b88a412052e9c1e704675198d57d49ab87f91ed44b9b9cf867b \
     NEO4J_TARBALL=ongdb-enterprise-3.5.3-unix.tar.gz \
     NEO4J_EDITION=enterprise
 ARG NEO4J_URI=http://cdn.graphfoundation.org/ongdb/dist/ongdb-enterprise-3.5.3-unix.tar.gz
