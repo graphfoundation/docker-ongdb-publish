@@ -1,0 +1,8 @@
+{
+  "apoc": {
+    "versions": "https://graphfoundation.github.io/ongdb-apoc/versions.json",
+    "properties": {
+      "dbms.security.procedures.unrestricted": "apoc.*"
+    }
+  }
+}
