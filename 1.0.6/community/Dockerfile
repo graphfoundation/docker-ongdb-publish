@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-slim
 
-ENV ONGDB_SHA256=beaeda039bc7867f42f0242aa302be0a0f7bea423615cc98a4a017a798028c14 \
+ENV ONGDB_SHA256=5dbb9a5f97e5492520f128cf394c5c0af73c8085515a22aa096a9cfc26a2d3e0 \
     ONGDB_TARBALL=ongdb-community-1.0.6-unix.tar.gz \
     ONGDB_EDITION=community \
     ONGDB_HOME="/var/lib/ongdb" \
